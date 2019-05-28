@@ -27,11 +27,10 @@ export default {
   display: flex;
   flex-direction: row;
 
-  padding: 6px 0;
+  padding: 16px 0;
 
   height: 100%;
   width: 100%;
-  border: 3px solid blue;
 
   overflow-x: auto;
 }

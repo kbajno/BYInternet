@@ -28,6 +28,7 @@ export default {
   height: 100vh;
   width: 100%;
 
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  background-color: rgb(236, 236, 240);
 }
 </style>
