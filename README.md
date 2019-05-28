@@ -40,6 +40,9 @@ yarn run test:unit
 
 ## Release History
 
+* **0.0.2** - Main color theme
+    * Create the main color theme (light color theme)
+
 * **0.0.1** - Project start
     * Setting up wireframes
 
