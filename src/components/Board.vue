@@ -1,13 +1,11 @@
 <template>
   <div class="board">
-    <Column />
-    <Column />
-    <Column />
-    <Column />
-    <Column />
-    <Column />
-    <Column />
-    <Column />
+    <div class="column-container"
+      v-for="column in columnsData"
+      :key="column.name"
+    >
+      <Column :columnLinks="column.links" :columnName="column.name" />
+    </div>
   </div>
 </template>
 
@@ -18,6 +16,9 @@ export default {
   name: 'app',
   components: {
     Column
+  },
+  props: {
+    columnsData: Array
   }
 }
 </script>
@@ -33,5 +34,24 @@ export default {
   width: 100%;
 
   overflow-x: auto;
+
+  .column-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+
+    padding: 0 8px;
+
+    width: 360px;
+
+    &:first-child {
+      padding-left: 16px;
+    }
+
+    &:last-child {
+      padding-right: 16px;
+    }
+  }
 }
 </style>

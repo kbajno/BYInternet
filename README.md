@@ -40,10 +40,13 @@ yarn run test:unit
 
 ## Release History
 
-* **0.0.2** - Main color theme
+* **0.1.2** - Data architecture
+    * Setting up the architecture of the whole project
+
+* **0.1.1** - Main color theme
     * Create the main color theme (light color theme)
 
-* **0.0.1** - Project start
+* **0.1.0** - Project start
     * Setting up wireframes
 
 ## Meta
