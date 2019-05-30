@@ -11,6 +11,14 @@
     <div v-for="link in columnLinks" :key="link.name">
       <Card :linkName="link.name" :linkUrl="link.url" />
     </div>
+    <div>
+      <vue-form-builder
+        ref="form"
+        v-model="model"
+        :schema="schema"
+        @action="onAction"
+      ></vue-form-builder>
+    </div>
   </div>
 </template>
 
@@ -18,13 +26,70 @@
 import Card from './Card.vue'
 
 export default {
-  name: 'app',
+  name: 'column',
   components: {
     Card
   },
   props: {
     columnName: String,
     columnLinks: Array
+  },
+  data () {
+    return {
+      model: {
+        name: '',
+        url: ''
+      },
+      schema: {
+        fields: [
+          {
+            type: 'input',
+            inputType: 'input',
+            label: 'Name',
+            name: 'inputName',
+            model: 'name',
+            placeholder: 'Column name',
+            readonly: false,
+            disabled: false,
+            validate: {
+              required: true
+            }
+          },
+          {
+            type: 'input',
+            inputType: 'input',
+            label: 'Name',
+            name: 'inputUrl',
+            model: 'url',
+            placeholder: 'Column name',
+            readonly: false,
+            disabled: false,
+            validate: {
+              required: true
+            }
+          },
+          {
+            type: 'actions',
+            buttons: [
+              {
+                type: 'submit',
+                buttonType: 'success',
+                buttonLabel: 'Submit'
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+
+  methods: {
+    async onAction (e) {
+      if (e.type === 'submit') {
+        const res = await this.$refs.form.$validator.validate()
+        if (res) alert('Form is valid')
+      }
+    }
   }
 }
 </script>
