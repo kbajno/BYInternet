@@ -40,6 +40,9 @@ yarn run test:unit
 
 ## Release History
 
+* **0.1.2** - Form
+    * Creation of column and card addition forms
+
 * **0.1.2** - Data architecture
     * Setting up the architecture of the whole project
 
