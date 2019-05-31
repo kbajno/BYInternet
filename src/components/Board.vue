@@ -4,7 +4,7 @@
       v-for="column in columnsData"
       :key="column.name"
     >
-      <Column :columnLinks="column.links" :columnName="column.name" />
+      <Column :columnData="column" />
     </div>
     <div class="column-container">
       <div class="column">
@@ -72,9 +72,12 @@ export default {
 
   methods: {
     async onAction (e) {
-      if (e.type === 'submit') {
-        const res = await this.$refs.form.$validator.validate()
-        if (res) alert('Form is valid')
+      if (e.type === 'submit') { // Check if the submit button was pressed
+        const res = await this.$refs.form.$validator.validate() // Check if the form is valid
+        if (res) {
+          // Do something
+          this.$store.commit('addColumn', this.model.name)
+        }
       }
     }
   }

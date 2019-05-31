@@ -2,13 +2,13 @@
   <div class="column">
     <div class="column-header">
       <div class="column-name">
-        {{ columnName }}
+        {{ columnData.name }}
       </div>
       <div class="column-buttons">
         <i class="fa fa-ellipsis-h"></i>
       </div>
     </div>
-    <div v-for="link in columnLinks" :key="link.name">
+    <div v-for="link in columnData.links" :key="link.name">
       <Card :linkName="link.name" :linkUrl="link.url" />
     </div>
     <div>
@@ -31,11 +31,11 @@ export default {
     Card
   },
   props: {
-    columnName: String,
-    columnLinks: Array
+    columnData: Object
   },
   data () {
     return {
+      columnName: this.columnData.name,
       model: {
         name: '',
         url: ''
@@ -48,7 +48,7 @@ export default {
             label: 'Name',
             name: 'inputName',
             model: 'name',
-            placeholder: 'Column name',
+            placeholder: 'Name',
             readonly: false,
             disabled: false,
             validate: {
@@ -61,7 +61,7 @@ export default {
             label: 'Name',
             name: 'inputUrl',
             model: 'url',
-            placeholder: 'Column name',
+            placeholder: 'URL',
             readonly: false,
             disabled: false,
             validate: {
@@ -87,7 +87,13 @@ export default {
     async onAction (e) {
       if (e.type === 'submit') {
         const res = await this.$refs.form.$validator.validate()
-        if (res) alert('Form is valid')
+        if (res) {
+          console.log(this.model)
+          this.$store.commit('addLink', {
+            name: this.columnName,
+            link: this.model
+          })
+        }
       }
     }
   }
