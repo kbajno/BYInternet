@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header />
-    <Board :columnsData="getData"/>
+    <Board />
   </div>
 </template>
 
@@ -14,26 +14,11 @@ export default {
   components: {
     Header,
     Board
-  },
-  computed: {
-    getData () {
-      return this.$store.getters.getData
-    }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 @import "./assets/minireset.css";
-
-#app {
-  display: flex;
-  flex-direction: column;
-
-  height: 100vh;
-  width: 100%;
-
-  font-family: 'Roboto', sans-serif;
-  background-color: rgb(236, 236, 240);
-}
+@import "assets/main.scss";
 </style>

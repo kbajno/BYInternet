@@ -1,0 +1,28 @@
+input {
+  margin-bottom: 5px;
+  padding: 10px;
+
+  height: 30px;
+  width: 100%;
+
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid rgb(235, 235, 235);
+}
+
+.vue-form__item-label {
+  display: none;
+}
+
+button {
+  // margin: 0 10px; /* Not sure about that */
+  padding: 0 25px;
+
+  height: 30px;
+
+  font-size: 16px;
+  color: #fff;
+  background-color: rgb(48, 88, 232);
+  border-radius: 5px;
+  border: none;
+}
