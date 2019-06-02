@@ -1,11 +1,13 @@
 <template>
   <div class="board">
     <div class="board--container"
-      v-for="column in columns"
+      v-for="column in board"
        :key="column.name"
     >
       <Column :columnData="column" />
     </div>
+    <button @click="addColumn('Salut')">Add a column</button>
+    {{ $store.state.status.message }}
   </div>
 </template>
 
@@ -18,9 +20,15 @@ export default {
     Column
   },
 
+  methods: {
+    addColumn (name) {
+      this.$store.dispatch('addColumn', name)
+    }
+  },
+
   computed: {
-    columns () {
-      return this.$store.state.columns
+    board () {
+      return this.$store.state.board.columns
     }
   },
 

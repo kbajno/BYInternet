@@ -1,35 +1,22 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import Columns from '@/api/columns'
+import board from './modules/columns'
+import status from './modules/status'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: { // = data
-    columns: []
+  modules: {
+    board,
+    status
   },
 
-  mutations: {
-    setColumns (state, columns) {
-      // update columns
-      state.columns = columns
-    }
-  },
+  state: {},
 
-  actions: {
-    fetchColumns ({ commit }) {
-      // make the call
-      // run setColumns mutation
-      Columns.getColumns(columns => {
-        commit('setColumns', columns)
-      })
-    }
-  },
+  getters: {},
 
-  getters: {
-    columnsCount () {
-      // ...
-    }
-  }
+  actions: {},
+
+  mutations: {}
 })
