@@ -6,7 +6,9 @@ export default {
   mutations: {
     statusMessage (state, message) {
       state.message = message
-      setTimeout(() => { state.message = null }, 5000)
+      setTimeout(() => {
+        state.message = null
+      }, 5000)
     }
   }
 }

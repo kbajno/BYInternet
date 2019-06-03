@@ -1,13 +1,24 @@
 <template>
   <div class="board">
-    <div class="board--container"
+    <div class="board--column-container"
       v-for="column in board"
        :key="column.name"
     >
       <Column :columnData="column" />
     </div>
-    <button @click="addColumn('Salut')">Add a column</button>
-    {{ $store.state.status.message }}
+    <div class="board--column-container">
+      <div class="column">
+        <div class="column--header">
+          Add a column
+        </div>
+
+        <div>
+          <label for="columnName">Column name</label>
+          <input type="text" id="columnName" v-model="columnName">
+          <button @click="addColumn">Add column</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -20,9 +31,15 @@ export default {
     Column
   },
 
+  data () {
+    return {
+      columnName: ''
+    }
+  },
+
   methods: {
-    addColumn (name) {
-      this.$store.dispatch('addColumn', name)
+    addColumn () {
+      this.$store.dispatch('addColumn', this.columnName)
     }
   },
 
