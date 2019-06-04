@@ -35,7 +35,11 @@
     margin-right: 5px;
   }
 
-  &:hover .card-buttons {
+  &:hover .card--buttons {
     display: block;
+
+    i:hover {
+      cursor: pointer;
+    }
   }
 }

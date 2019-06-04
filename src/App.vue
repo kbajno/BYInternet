@@ -23,5 +23,5 @@ export default {
 
 <style lang="scss">
 @import "./assets/minireset.css";
-@import "assets/main.scss";
+@import "./assets/main.scss";
 </style>

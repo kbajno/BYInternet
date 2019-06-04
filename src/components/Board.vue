@@ -11,12 +11,14 @@
         <div class="column--header">
           Add a column
         </div>
-
-        <div>
-          <label for="columnName">Column name</label>
-          <input type="text" id="columnName" v-model="columnName">
-          <button @click="addColumn">Add column</button>
-        </div>
+        <button @click="showModal = true">Add column</button>
+        <Modal v-if="showModal" @close="showModal = false">
+          <div slot="body">
+            <label for="columnName">Column name</label>
+            <input type="text" id="columnName" v-model="columnName">
+            <button @click="addColumn">Add column</button>
+          </div>
+        </Modal>
       </div>
     </div>
   </div>
@@ -24,22 +26,27 @@
 
 <script>
 import Column from './Column.vue'
+import Modal from './Modal.vue'
 
 export default {
-  name: 'board',
+  name: 'Board',
   components: {
-    Column
+    Column,
+    Modal
   },
 
   data () {
     return {
-      columnName: ''
+      columnName: '',
+      showModal: false
     }
   },
 
   methods: {
     addColumn () {
       this.$store.dispatch('addColumn', this.columnName)
+      this.showModal = false
+      this.columnName = ''
     }
   },
 
