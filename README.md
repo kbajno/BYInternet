@@ -42,6 +42,10 @@ yarn run test:unit
 
 * **0.1.3** - Send data
     * Setting up Vuex for displaying and modifying data
+    * Create modal for the forms
+    * Create columns thought the forms
+    * Create cards thought the forms
+    * Edit cards thought the forms
 
 * **0.1.2** - Form
     * Creation of column and card addition forms

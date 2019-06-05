@@ -8,8 +8,8 @@
         <i class="fa fa-ellipsis-h"></i>
       </div>
     </div>
-    <div v-for="link in columnData.links" :key="link.name">
-      <Card :linkName="link.name" :linkUrl="link.url" />
+    <div v-for="link in columnData.links" :key="link.id">
+      <Card :linkData="link" :colId="columnData.id"/>
     </div>
     <button @click="showModal = true">Add link</button>
     <Modal v-if="showModal" @close="showModal = false">
@@ -50,8 +50,9 @@ export default {
   methods: {
     addCard () {
       this.$store.dispatch('addCard', {
-        colName: this.columnData.name,
+        colId: this.columnData.id,
         card: {
+          id: Date.now(),
           name: this.cardName,
           url: this.cardUrl
         }

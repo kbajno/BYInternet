@@ -8,32 +8,49 @@ export default {
   getters: {},
 
   actions: {
+    // ---------- Column actions ----------
     fetchColumns ({ commit }) {
-      // make the call
-      // run setColumns mutation
+      // get all the columns form the database
       Columns.getColumn(columns => {
         commit('setBoard', columns)
       })
     },
 
-    addColumn (context, name) {
-      const columnItem = context.state.columns.find(c => c.name === name)
-      // find columnItem
+    addColumn (context, data) {
+      // add a column
+      const columnItem = context.state.columns.find(c => c.name === data.columnName) // find columnItem
       if (!columnItem) {
         // create column
-        context.commit('pushColumn', name)
+        context.commit('pushColumn', data)
       } else {
         // send error
         context.commit('statusMessage', 'This column is already created!')
       }
     },
 
+    // ---------- Card actions ----------
     addCard (context, data) {
-      const getColumn = context.state.columns.find(c => c.name === data.colName)
+      // create a card
+      const getColumn = context.state.columns.find(c => c.id === data.colId) // find the column
       if (getColumn) {
+        // create card
         context.commit('pushLink', data)
       } else {
+        // send error
         context.commit('statusMessage', 'Error, please refresh this page or contact the support!')
+      }
+    },
+
+    editCard (context, data) {
+      // edit a card
+      // find the column
+      const getColumn = context.state.columns.find(c => c.id === data.colId)
+      // find the card
+      const getCard = getColumn.links.find(c => c.id === data.card.id)
+      if (getCard) {
+        context.commit('editLink', data)
+      } else {
+        context.commit('statusMessage', 'Error, this card does not seem to exist.')
       }
     }
   },
@@ -44,19 +61,28 @@ export default {
       state.columns = board
     },
 
-    pushColumn (state, column) {
+    pushColumn (state, data) {
+      // create a column
       state.columns.push({
-        name: column,
+        id: data.id,
+        name: data.columnName,
         links: []
       })
     },
 
     pushLink (state, data) {
-      state.columns.find(c => c.name === data.colName).links.push({
+      // create a card
+      state.columns.find(c => c.id === data.colId).links.push({
+        id: data.card.id,
         name: data.card.name,
         url: data.card.url
       })
-      console.log(data)
+    },
+
+    editLink (state, data) {
+      const getCard = state.columns.find(c => c.id === data.colId).links.find(c => c.id === data.card.id)
+      getCard.name = data.card.name
+      getCard.url = data.card.url
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="board">
     <div class="board--column-container"
       v-for="column in board"
-       :key="column.name"
+       :key="column.id"
     >
       <Column :columnData="column" />
     </div>
@@ -44,7 +44,7 @@ export default {
 
   methods: {
     addColumn () {
-      this.$store.dispatch('addColumn', this.columnName)
+      this.$store.dispatch('addColumn', { id: Date.now(), columnName: this.columnName })
       this.showModal = false
       this.columnName = ''
     }
